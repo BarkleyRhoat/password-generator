@@ -3,19 +3,29 @@
 // prompt to get the number of characters in password
 
 var generateBtn = document.querySelector("#generate");
-var numOfCharacters = prompt("how many characters do you want your password to be?")
+var numOfCharacters = () => { 
+  var length = window.prompt("how many characters do you want your password to be?")
+  var min = 8;
+  var max = 50;
+  if(parseInt(length) && (length >= min && length <= max)){
+    return parseInt(length);
+  }
+  return numOfCharacters();
+}
 
-var uppers = confirm("would you like to use uppercase letters?");
-var lowers = confirm("would you like to use lowercase letters?");
-var numbers = confirm("would you like to use numbers?");
-var symbols = confirm("would you like to use special characters?");
+
+
+var uppers = window.confirm("would you like to use uppercase letters?");
+var lowers = window.confirm("would you like to use lowercase letters?");
+var numbers = window.confirm("would you like to use numbers?");
+var symbols = window.confirm("would you like to use special characters?");
 
  if (!uppers && !lowers && !numbers && !symbols) {
   alert ("You must use atleast one character type");
-  uppers = confirm("would you like to use uppercase letters?");
-  lowers = confirm("would you like to use lowercase letters?")
-  numbers = confirm("would you like to use numbers?");
-  symbols = confirm("would you like to use special characters?")
+  uppers = window.confirm("would you like to use uppercase letters?");
+  lowers = window.confirm("would you like to use lowercase letters?")
+  numbers = window.confirm("would you like to use numbers?");
+  symbols = window.confirm("would you like to use special characters?")
 }
 
 function writePassword() {
@@ -26,10 +36,10 @@ function writePassword() {
 
 }
 
-var upperCase = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-var lowerCase = "abcdefghijklmnopqrstuvwxyz";
-var number = "0123456789";
-var symbol = "@#$%^&*()_+~|}{[]<>/-=";
+var upperCase = ["'A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z'"];
+var lowerCase = ["'a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z'"];
+var number = ["'0','1','2','3','4','5','6','7','8','9'"];
+var symbol = ["'@','#','$','%','^','&','*','(',')',_','+','~','|','}','{','[',']','<','>','/',-','='"];
 
 var allCharacters = upperCase + lowerCase + number + symbol;
 
@@ -58,6 +68,5 @@ function generatePassword(){
 
 
 // Add event listener to generate button
-generateBtn.addEventListener("click", writePassword);
-
+generateBtn.addEventListener("click", writePassword); 
 
